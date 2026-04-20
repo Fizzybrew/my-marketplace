@@ -2,15 +2,19 @@
 
 import { useState, useRef } from "react";
 
-export default function PhoneInputAdvanced({
-  value = "",
-  onChange,
-  className = "",
-}) {
-  const [phone, setPhone] = useState(value);
-  const inputRef = useRef(null);
+interface PhoneInputProps {
+  value?: string;
+  onChange?: any; 
+  className?: string;
+}
 
-  const handlePhoneChange = (e) => {
+export default function PhoneInputAdvanced({ value = "", onChange, className }: PhoneInputProps) {
+  const [phone, setPhone] = useState(value);
+  // Добавляем тип для рефа
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  // e: any здесь теперь допустим для TS
+  const handlePhoneChange = (e: any) => {
     let input = e.target.value;
     let cleaned = input.replace(/\D/g, "");
 
@@ -48,7 +52,8 @@ export default function PhoneInputAdvanced({
     }
   };
 
-  const handleKeyDown = (e) => {
+  // ОБЯЗАТЕЛЬНО: Добавляем : any сюда, иначе билд упадет на этом месте
+  const handleKeyDown = (e: any) => {
     if (e.key === "Backspace" && (phone === "+7 (" || phone === "+7")) {
       setPhone("");
       if (onChange) onChange("");

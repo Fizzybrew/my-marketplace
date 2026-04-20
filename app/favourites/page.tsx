@@ -1,6 +1,11 @@
 import Search from "../components/Search";
 
-export default function Favourites({ search, setSearch }) {
+interface FavouritesProps {
+  search: string;
+  setSearch: (value: string) => void;
+}
+
+export default function Favourites({ search, setSearch }: FavouritesProps) {
   return (
     <>
       <header className="p-5">

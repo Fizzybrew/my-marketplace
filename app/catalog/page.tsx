@@ -1,7 +1,12 @@
 import Search from "../components/Search";
 import CategoryList from "../components/CategoryList.jsx";
 
-export default function Catalog ({ search, setSearch }) {
+interface CatalogProps {
+  search: string;
+  setSearch: (value: string) => void;
+}
+
+export default function Catalog ({ search, setSearch }: CatalogProps) {
   const categoryList = [
     {
       id: 1,

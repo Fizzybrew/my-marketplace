@@ -1,7 +1,12 @@
 import Link from 'next/link'
 import Search from "../components/Search";
 
-export default function Basket({ search, setSearch }) {
+interface BasketProps {
+  search: string;
+  setSearch: (value: string) => void;
+};
+
+export default function Basket({ search, setSearch }: BasketProps) {
   return (
     <>
       <header className="p-5">
